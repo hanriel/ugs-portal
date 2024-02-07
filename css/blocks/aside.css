@@ -17,7 +17,7 @@
     margin: 0 24px;
     position: relative;
     width: auto;
-    padding: 8px;
+    padding: 8px 0;
 }
 
 .aside__block nav, .aside__block nav a {
