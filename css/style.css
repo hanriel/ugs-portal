@@ -1,0 +1,80 @@
+@import url(blocks/font.css);
+
+
+@import url(blocks/page.css);
+
+@import url(blocks/aside.css);
+@import url(blocks/footer.css);
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    
+}
+
+
+.caption-1 {
+    color: #0669eb;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+a {
+    color: #0669eb;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+a:hover {
+    color: #11468a;
+}
+
+a, a.button-hover:hover, a button, a button:hover
+{
+  text-decoration: none;
+}
+
+nav a:hover {
+    background: rgba(208, 215, 222, 0.32);
+    text-decoration: none;
+}
+
+.nav__item {
+    list-style: none;
+}
+
+.news__section {
+    display: flex;
+    gap: 1em;
+}
+
+.card {
+    border-radius: 10px;
+    border: 1px solid #ededed;
+    padding: 1em 1em;
+    margin-bottom: 1em;
+}
+
+.card img {
+    width: 100%;
+    margin: 1em 0;
+}
+
+.card:last-of-type {
+    margin-bottom: 0px;
+}
+
+
+.copyright {
+    color: #3c88ec;
+    margin: 1em 0;
+}
+
+.section__title {
+    border-bottom: 0.2em solid #3c88ec;
+    margin: 1em 0;
+}

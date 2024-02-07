@@ -1,0 +1,94 @@
+.aside__block nav a.active i, .aside__block nav a.active span, .aside__block nav a:active i, .aside__block nav a:active span
+{
+  opacity: 1;
+}
+
+.aside__block nav a span
+{
+  opacity: .5;
+}
+
+.aside__block {
+    float: left;
+    height: 100%;
+    position: sticky;
+    top: 0;
+    width: 280px;
+    z-index: 9999;
+}
+
+.aside__block nav a.active, .aside__block nav a:active
+{
+  background: rgba(208, 215, 222, 0.32);
+  opacity: 1;
+}
+
+.aside__container {
+    border-right: 1px solid rgba(208, 215, 222, 0.32);
+    height: 100vh;
+    margin: 0 32px;
+    position: relative;
+    width: auto;
+}
+
+.aside__brand {
+    padding-bottom: 32px;
+    padding-left: 8px;
+    padding-top: 40px;
+}
+
+.aside__block nav, .aside__block nav a {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.aside__block nav {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-right: 32px;
+    white-space: nowrap;
+}
+
+.aside__block nav a {
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 8px;
+    height: 48px;
+    padding-left: 12px;
+    position: relative;
+    -webkit-transition: all .2s ease 0s;
+    -o-transition: all .2s ease 0s;
+    transition: all .2s ease 0s;
+}
+
+.aside__block nav a i {
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    margin-right: 12px;
+    opacity: .5;
+    font-size: 24px;
+}
+
+.asibe__brand {
+    padding-bottom: 10px;
+    padding-left: 8px;
+    padding-top: 18px;
+}
+
+.aside__footer {
+    bottom: 0;
+    padding: 32px 16px;
+    position: absolute;
+    width: auto;
+    width: 100%;
+}
