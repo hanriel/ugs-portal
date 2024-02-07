@@ -1,9 +1,12 @@
 @import url(blocks/font.css);
+@import url(blocks/icons.css);
 
 
 @import url(blocks/page.css);
 
 @import url(blocks/aside.css);
+@import url(blocks/brand.css);
+
 @import url(blocks/footer.css);
 
 
@@ -14,17 +17,8 @@
     
 }
 
-
-.caption-1 {
-    color: #0669eb;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 20px;
-}
-
 a {
     color: #0669eb;
-    font-size: 14px;
     font-weight: 400;
     line-height: 24px;
 }
@@ -36,15 +30,6 @@ a:hover {
 a, a.button-hover:hover, a button, a button:hover
 {
   text-decoration: none;
-}
-
-nav a:hover {
-    background: rgba(208, 215, 222, 0.32);
-    text-decoration: none;
-}
-
-.nav__item {
-    list-style: none;
 }
 
 .news__section {

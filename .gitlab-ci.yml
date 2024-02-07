@@ -1,0 +1,23 @@
+image: node:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - git fetch origin main
+  - git checkout main
+  - npm install
+  - npm run build
+  - apk update && apk add openssh-client rsync
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | ssh-add -
+
+deploy job:
+  script:
+    - rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . p87@blog.p87.pmkedu.pro:/var/www/blog.p87.pmkedu.pro/html/

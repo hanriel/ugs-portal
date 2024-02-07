@@ -1,0 +1,37 @@
+.brand {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    margin-right: 24px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    column-gap: 5px;
+    color: #000;
+    border-radius: 12px;
+    -webkit-transition: all .2s ease 0s;
+    -o-transition: all .2s ease 0s;
+    transition: all .2s ease 0s;
+}
+
+.brand:hover {
+    background-color: rgba(40, 92, 208, 0.1);
+    color: #000;
+}
+
+.brand__logo {
+    width: 68px;
+    grid-row: span 2;
+}
+
+.brand__title {
+    font-weight: bold;
+    font-size: 1rem;
+    align-self: end;
+    line-height: normal;
+}
+
+.brand__subtitle {
+    font-size: 12px;
+    line-height: normal;
+}
