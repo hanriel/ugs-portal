@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Пермский машиностроительный колледж</title>
+    <title>УГС 09.00.00</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div class="page__wrapper">
+
+        <!-- ASIDE BLOCK -->
+
         <aside class="aside__block">
             <div class="aside__container">
                 <a class="brand" href="/">
@@ -20,7 +23,7 @@
                 <nav class="header__nav">
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a class="nav__link active" href="./pages/news.html">
+                            <a class="nav__link" href="/presence"> <!--active -->
                                 <i class="icons-1"></i>
                                 <span>Посещаемость</span>
                             </a>
@@ -31,7 +34,7 @@
                             </div>
                         </li>
                         <li class="nav__item">
-                            <a class="nav__link" href="./pages/about.html">
+                            <a class="nav__link" href="/progress">
                                 <i class="icons-2"></i>
                                 <span>Успеваемость</span>
                             </a>
@@ -42,19 +45,19 @@
                             </div>
                         </li>
                         <li class="nav__item">
-                            <a class="nav__link" href="./pages/docs.html">
+                            <a class="nav__link" href="/epos">
                                 <i class="icons-3"></i>
                                 <span>ЭПОС.СПО</span>
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a class="nav__link" href="./pages/epos.html">
+                            <a class="nav__link" href="/report">
                                 <i class="icons-4"></i>
                                 <span>Отчёты</span>
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a class="nav__link" href="./pages/emplyeers.html">
+                            <a class="nav__link" href="/admin">
                                 <i class="icons-5"></i>
                                 <span>Старостам</span>
                             </a>
@@ -67,57 +70,136 @@
                 <footer class="aside__footer">
                     <a class="nav__link" href="https://t.me/hanriel">
                         <i class="icons-heart"></i>
-                        <span>Made width love by Fedoseev&nbsp;D.A.</span>
+                        <span>Made with love by Fedoseev&nbsp;D.A.</span>
                     </a>
                 </footer>
             </div>            
         </aside>
     
-        <!--  -->
+        <!-- MAIN SECTION -->
 
-        <main>
-            <section>
-                <h2 class="section__title">Мероприятия</h2>
-                <section class="card">
-                <i>1-6 февраля 2024</i>
-                <h3>Зимняя школа по праву — 2024</h3>
-                </section>
-                <section class="card">
-                <i>1 февраля 2024</i>
-                <h3>Профильная зимняя школа для поступающих в магистратуру Института образования — 2024</h3>
-                </section>
-                <section class="card">
-                <i>1-3 февраля 2024</i>
-                <h3>Открытый семинар ANR-Lab: «Модели Mistral: особенности и достижения»</h3>
-                </section>
-                <section class="card">
-                <i>1 февраля 2024</i>
-                <h3>Летописный семинар: доклад Павла Кузенкова «Проблема стиля в византийских хрониках и русских летописях»</h3>
-                </section>
+        <main class="page__main">
+            <header class="main__header">
+                <input class="header__search" placeholder="Поиск по порталу">
+                <span class="header__date" id="date">8 февраля 2024 <br>Четверг</span>
+                <span class="header__time" id="time">23<span class="blink_me">:</span>30</span>
+                <button class="btn-blue">Вход</button>
+            </header>
+
+            <div class="section__header">
+              <h2 class="section__title">Мероприятия</h2>
+              <a class="section__link" href="/all">См. ещё</a>
+            </div>
+
+            <section class="section__cards">
+                <article class="card">
+                  <img class="cover" src="./images/cat.jpg">
+                  <div class="card__container">
+                    <span class="card__topline">ПН 5 февраля 2024 08:29</span>
+                    <div class="card__info">
+                      <a class="card__link">Церемония поднятия Государственного флага РФ ТКПД-2023-1, ТМС-2023-3/6, ЭКТ-2023-1</a>
+                      <p class="card__descr">Ответственные: Приказчиков&nbsp;И.В.</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="card">
+                  <img class="cover" src="./images/cat.jpg">
+                  <div class="card__container">
+                    <span class="card__topline">ПН 5 февраля 2024 08:30</span>
+                    <div class="card__info">
+                      <a class="card__link">Разговоры о важном</a>
+                      <p class="card__descr">Ответственные: Кураторы групп</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="card">
+                  <img class="cover" src="./images/cat.jpg">
+                  <div class="card__container">
+                    <span class="card__topline">ВТ 6 февраля 2024</span>
+                    <div class="card__info">
+                      <a class="card__link">Малый педагогический совет в группе ТКПД-2021-1 (240а)</a>
+                      <p class="card__descr">Ответственные: Поспелова&nbsp;И.А., Чебан&nbsp;Ж.В.</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="card">
+                  <img class="cover" src="./images/cat.jpg">
+                  <div class="card__container">
+                    <span class="card__topline">ЧТ 8 февраля 2024 09:30</span>
+                    <div class="card__info">
+                      <a class="card__link">Заседание КДНиЗП</a>
+                      <p class="card__descr">Ответственные: Приказчиков&nbsp;И.В.</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="card">
+                  <img class="cover" src="./images/cat.jpg">
+                  <div class="card__container">
+                    <span class="card__topline">ЧТ 8 февраля 2024 15:40</span>
+                    <div class="card__info">
+                      <a class="card__link">Собрание группы ТМП-19-1-по производственной практике (239)</a>
+                      <p class="card__descr">Ответственные: Ячейко&nbsp;О.А., Гоголева&nbsp;Н.С., Потапов&nbsp;Ю.А.</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="card">
+                  <img class="cover" src="./images/cat.jpg">
+                  <div class="card__container">
+                    <span class="card__topline">ЧТ 8 февраля 2024</span>
+                    <div class="card__info">
+                      <a class="card__link">Малый педагогический совет в группах ТМС-2020-1, ТМС-2020-2, ТМС-2020-3 (236)</a>
+                      <p class="card__descr">Ответственные: Гоголева&nbsp;Н.С., Чебан&nbsp;Ж.В., Потапов&nbsp;Ю.А.</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="card">
+                  <img class="cover" src="./images/cat.jpg">
+                  <div class="card__container">
+                    <span class="card__topline">ЧТ 8 февраля 2024</span>
+                    <div class="card__info">
+                      <a class="card__link">Собрание групп ТМС-20-1, ТМС-20-2, ТМС-20-3 по производственной практике (116)</a>
+                      <p class="card__descr">Ответственные: Гоголева&nbsp;Н.С., Чебан&nbsp;Ж.В., Потапов&nbsp;Ю.А.</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="card">
+                  <img class="cover" src="./images/cat.jpg">
+                  <div class="card__container">
+                    <span class="card__topline">ПТ 9 февраля 2024</span>
+                    <div class="card__info">
+                      <a class="card__link">ЗАПОЛНЕНИЕ ИС ТРАЕКТОРИЯ!</a>
+                      <p class="card__descr">Ответственные: Кураторы групп</p>
+                    </div>
+                  </div>
+                </article>
             </section>
-            <section>
-                <h2 class="section__title">Цифры и факты</h2>
+
+            <div class="section__header">
+              <h2 class="section__title">Цифры и факты</h2>
+              <a class="section__link" href="/all">См. ещё</a>
+            </div>
+
+            <section class="section__cards">
                 <section class="card">
-                <h3>95%</h3>
-                <i>уровень трудоустройства выпускников спустя пол года после окончания колледжа</i>
+                  <h3>95%</h3>
+                  <i>уровень трудоустройства выпускников спустя пол года после окончания колледжа</i>
                 </section>
                 <section class="card">
-                <h3>>16 тыс.</h3>
-                <i>выпускников основных образовательных программ</i>
+                  <h3>>16 тыс.</h3>
+                  <i>выпускников основных образовательных программ</i>
                 </section>
                 <section class="card">
-                <h3>>100</h3>
-                <i>преподавателей и исследователей</i>
+                  <h3>>100</h3>
+                  <i>преподавателей и исследователей</i>
                 </section>
                 <section class="card">
-                <h3>>5 тыс.</h3>
-                <i>выпускников ДПО</i>
+                  <h3>>5 тыс.</h3>
+                  <i>выпускников ДПО</i>
                 </section>
 
             </section>
         </main>
     </div>
-
 	<script src="index.js"></script>
   </body>
 </html>

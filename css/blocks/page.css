@@ -16,3 +16,7 @@ main {
     padding-right: 40px;
     position: relative;
 }
+
+.page__main {
+    padding: 32px 0;
+}
