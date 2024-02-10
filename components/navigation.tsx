@@ -1,17 +1,6 @@
-
-import { useState } from 'react'
- 
-export default function Aside() {
-  return (
-    <>
-        <aside className="aside__block">
-            <div className="aside__container">
-            <a className="brand" href="/">
-                <img className="brand__logo" src="logo.svg" width={54}></img>
-                <span className="brand__title">ГБПОУ ПМК</span>
-                <span className="brand__subtitle">УГС 09.00.00</span>
-            </a>
-
+export default function Navigation() {
+    return (
+        <>
             <nav className="header__nav">
                 <ul className="nav__list">
                 <li className="nav__item">
@@ -56,15 +45,6 @@ export default function Aside() {
                 </li>
                 </ul>
             </nav>
-            <p className="aside__descr">Избранные и закрытые разделы будут доступны после <a href="/singin">Авторизации</a></p>
-            <footer className="aside__footer">
-                <a className="nav__link" href="https://t.me/hanriel">
-                <i className="icons-heart"></i>
-                <span>Made with love by Fedoseev&nbsp;D.A.</span>
-                </a>
-            </footer>
-            </div>            
-        </aside>
-    </>
-  )
+        </>
+    )
 }

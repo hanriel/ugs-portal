@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Aside from "./aside";
+import Aside from "@/components/aside";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body className={inter.className}>
+      <div className={`max-w-screen-xl min-h-full relative mx-auto`}>
         <Aside />
         {children}
+      </div>
       </body>
     </html>
   );
