@@ -1,10 +1,21 @@
 import Card from "@/components/card";
 
+async function getPlan() {
+  
+  const dynamicData = await fetch(`https://portal.pmkedu.pro/WeekPlan/`, { cache: 'no-store' })
+  console.log(dynamicData);
+
+}
+
+
 export default function Home() {
+
+  getPlan();
+
   return (
     <>
-      <div className="flex justify-between ml-8 mr-4">
-        <h2 className="text-lg">Мероприятия</h2>
+      <div className="flex justify-between mt-8 mb-4">
+        <h2 className="text-lg font-bold">Мероприятия</h2>
         <a className="text-xs" href="/all">См. ещё</a>
       </div>
 
@@ -51,8 +62,8 @@ export default function Home() {
         />
       </section>
 
-      <div className="flex justify-between ml-8 mr-4">
-        <h2 className="text-lg">Цифры и факты</h2>
+      <div className="flex justify-between mt-8 mb-4">
+        <h2 className="text-lg font-bold">Цифры и факты</h2>
         <a className="text-xs" href="/all">См. ещё</a>
       </div>
 

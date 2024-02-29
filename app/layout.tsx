@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={montserrat.className}>
       <div className={`max-w-[1440px] min-h-full relative mx-auto`}>
         <Aside />
-        <main className="border-box min-h-screen px-10 pb-[200px] pr-10 relative">
+        <main className="border-box min-h-screen py-8 pb-[200px] overflow-hidden relative">
           <Header />
           {children}
         </main>
