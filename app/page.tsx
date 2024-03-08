@@ -1,16 +1,17 @@
 import Card from "@/components/card";
+import { group } from "console";
 
-async function getPlan() {
-  
-  const dynamicData = await fetch(`https://portal.pmkedu.pro/WeekPlan/`, { cache: 'no-store' })
-  console.log(dynamicData);
-
+async function getSchedule() {
+  const res = await fetch(`https://api.pmkedu.pro/v1/schedule?date=2023-01-26&group=ssa-22-1&teacher=podvintsev_ss&aud=247`, {cache: 'no-store'})
+  const resData = await res.json()
+  return resData
 }
 
 
-export default function Home() {
+export default async function Home() {
 
-  getPlan();
+  const scheduleJson = await getSchedule()
+  const scheduleGroups = Array.from(scheduleJson.schedule)
 
   return (
     <>
@@ -63,10 +64,14 @@ export default function Home() {
       </section>
 
       <div className="flex justify-between mt-8 mb-4">
-        <h2 className="text-lg font-bold">Цифры и факты</h2>
-        <a className="text-xs" href="/all">См. ещё</a>
+        <h2 className="text-lg font-bold">Расписание</h2>
+        <a className="text-xs" href="/all">Сформировано {scheduleJson.create}</a>
       </div>
-
+      <section className="grid grid-cols-[1fr_1fr_1fr_1fr] gap-8">
+        { scheduleGroups.map((group) => (
+          <p key={group}>{group.toString()}</p>
+        )) }
+      </section>
       {/* <section className="section__cards">
         <article className="card">
           <div className="card__container">
