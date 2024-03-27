@@ -12,13 +12,13 @@ export default function Navigation() {
                         <NavItem label="Успеваемость" link="/progress" icon="icons-2"/>
                     </li>
                     <li className="relative">
-                        <NavItem label="ЭПОС.СПО" link="/progress" icon="icons-3"/>
+                        <NavItem label="ЭПОС.СПО" link="/epos" icon="icons-3"/>
                     </li>
                     <li className="relative">
-                        <NavItem label="Отчёты" link="/progress" icon="icons-4"/>
+                        <NavItem label="Отчёты" link="/report" icon="icons-4"/>
                     </li>
                     <li className="relative">
-                        <NavItem label="Старостам" link="/progress" icon="icons-5"/>
+                        <NavItem label="Старостам" link="/teams" icon="icons-5"/>
                     </li>
                 </ul>
             </nav>

@@ -70,7 +70,7 @@ export default async function Home() {
       <section className="grid grid-cols-[1fr_1fr_1fr_1fr] gap-8">
         { scheduleGroups.map((group) => (
           <p key={group}>{group.toString()}</p>
-        )) }
+        ))}
       </section>
       {/* <section className="section__cards">
         <article className="card">
