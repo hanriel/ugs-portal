@@ -1,5 +1,4 @@
 stages:
-  - build-app
   - build-image
 
 build image:
