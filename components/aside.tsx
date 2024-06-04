@@ -5,7 +5,7 @@ export default function Aside() {
   return (
     <>
         <aside className={`float-left h-full sticky top-0 w-72 z-50`}>
-            <div className="border-r border-solid border-blue-100 dark:border-neutral-700 h-[calc(100vh-16px)] realtive w-auto mx-6 py-2">
+            <div className="border-r border-solid border-blue-100 dark:border-neutral-700 h-[calc(100vh-16px)] realtive w-auto mr-6 py-2">
 
             <Brand />
             <Navigation />
