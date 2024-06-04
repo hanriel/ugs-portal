@@ -2,19 +2,46 @@ import Card from "@/components/card";
 import { group } from "console";
 
 async function getSchedule() {
-  const res = await fetch(`https://api.pmkedu.pro/v1/schedule?date=2023-01-26&group=ssa-22-1&teacher=podvintsev_ss&aud=247`, {cache: 'no-store'})
-  const resData = await res.json()
-  return resData
+  const res = await fetch(`http://localhost:7777/schedule`, {cache: 'no-store'})
+  return res.json()
 }
 
 
 export default async function Home() {
 
-  const scheduleJson = await getSchedule()
-  const scheduleGroups = Array.from(scheduleJson.schedule)
+  const schedule = await getSchedule()
 
   return (
     <>
+      <div className="flex justify-between mt-8 mb-4">
+        <h2 className="text-lg font-bold">Расписание</h2>
+        <a className="text-xs" href="/all">Сформировано {}</a>
+      </div>
+      <section className="grid grid-cols-[1fr_1fr_1fry] gap-8">
+        { schedule.map((group) => (
+            <article key={group} className="flex rounded-lg h-auto overflow-hidden relative border dark:border-neutral-700 hover:border-blue-100 hover:bg-blue-500/10 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+            <div className="grid gap-1 m-4 relative z-10 ">
+              <span className="text-lg font-bold">
+                {group.group_id.label}
+                <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 float-right">{group.startAt}</span>
+              </span>
+              { JSON.parse(group.pairs).map((pair) => (
+                <>
+                  <div className="grid grid-rows-1 grid-flow-col items-center gap-4 mt-auto">
+                    <p className="text-sm font-bold">{pair.number}</p>
+                    <p className="text-sm">{pair.label}</p>
+                  </div>
+                  <a className="flex text-sm gap-2 justify-end">
+                      <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">{pair.teacher}</span>
+                      <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">{pair.aud}</span>
+                  </a>
+                </>
+              ))}
+            </div>
+          </article>
+        ))}
+      </section>
+
       <div className="flex justify-between mt-8 mb-4">
         <h2 className="text-lg font-bold">Мероприятия</h2>
         <a className="text-xs" href="/all">См. ещё</a>
@@ -63,15 +90,6 @@ export default async function Home() {
         />
       </section>
 
-      <div className="flex justify-between mt-8 mb-4">
-        <h2 className="text-lg font-bold">Расписание</h2>
-        <a className="text-xs" href="/all">Сформировано {scheduleJson.create}</a>
-      </div>
-      <section className="grid grid-cols-[1fr_1fr_1fr_1fr] gap-8">
-        { scheduleGroups.map((group) => (
-          <p key={group}>{group.toString()}</p>
-        ))}
-      </section>
       {/* <section className="section__cards">
         <article className="card">
           <div className="card__container">
