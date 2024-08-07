@@ -1,22 +1,5 @@
 stages:
-  - build-app
   - build-image
-
-build app:
-  stage: build-app
-  image: node:20
-  script:
-    - npm
-    - npm ci
-    - npm build
-  cache:
-    paths:
-      - node_modules
-  artifacts:
-    paths:
-      - .next
-      - build
-    expire_in: 1 day
 
 build image:
   stage: build-image
@@ -24,10 +7,5 @@ build image:
   services:
    - docker:dind
   script:
-    - docker info
-    - echo $CI_REGISTRY_PASSWORD | docker login --username $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
-    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG || docker pull $CI_REGISTRY_IMAGE:master || true
     - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --cache-from=$CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME --cache-from=$CI_REGISTRY_IMAGE:master --shm-size 512M .
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
-    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - docker save $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA | ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no ${{ secrets.STAGE_SERVER_USER }}@${{ secrets.STAGE_SERVER_IP }} -p ${{ secrets.STAGE_SERVER_PORT }} 'docker load'
