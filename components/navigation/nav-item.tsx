@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-function NavItem({ label, link, icon}) {
+function NavItem({ label, link, icon }: { label: string, link: string, icon: string }) {
     return (
         <>
             <Link className="flex items-center h-12 pl-3.5 rounded-xl border border-transparent mr-6 p-2 transition-colors hover:border-blue-100 hover:bg-blue-500/10 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30" href={link}>

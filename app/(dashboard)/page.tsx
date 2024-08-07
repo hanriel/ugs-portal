@@ -1,4 +1,5 @@
 import Card from "@/components/card";
+import { Key } from "react";
 
 async function getSchedule() {
   const res = await fetch(`http://localhost:7777/schedule`, {cache: 'no-store'})
@@ -15,15 +16,15 @@ export default async function Home()  {
         <a className="text-xs" href="/all">Сформировано {}</a>
       </div>
       <section className="grid grid-cols-[1fr_1fr_1fry] gap-8">
-        { schedule.map((group) => (
-            <article key={group} className="flex rounded-lg h-auto overflow-hidden relative border dark:border-neutral-700 hover:border-blue-100 hover:bg-blue-500/10 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+        { schedule.map((group : { pairs : string, date: string, startAt : string, group_id : { id: number, label : string } }) => (
+            <article key={group.group_id.id} className="flex rounded-lg h-auto overflow-hidden relative border dark:border-neutral-700 hover:border-blue-100 hover:bg-blue-500/10 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
             <div className="grid gap-1 m-4 relative z-10 ">
               <span className="text-lg font-bold">
                 {group.group_id.label}
                 <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 float-right">{group.startAt}</span>
               </span>
-              { JSON.parse(group.pairs).map((pair) => (
-                <div key={pair}>
+              { JSON.parse(group.pairs).map((pair: { number: number, aud: number, teacher: string, label: string }) => (
+                <div key={group.group_id.id + "_" + pair.number}>
                   <div className="grid grid-rows-1 grid-flow-col items-center gap-4 mt-auto">
                     <p className="text-sm font-bold">{pair.number}</p>
                     <p className="text-sm">{pair.label}</p>

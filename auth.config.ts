@@ -17,11 +17,11 @@ export const authConfig = {
       }
       return true;
     },
-    async jwt({ token, user}) {
+    async jwt({ token, user }) {
       return { ...token, ...user }
     },
     async session({ session, token, user }) {
-      session.user = token
+      //session.user = token
       return session
     }
   },
