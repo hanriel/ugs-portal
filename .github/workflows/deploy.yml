@@ -18,7 +18,7 @@ jobs:
     # TODO: Add setup eviroment varibles
       
     - name: Set up Docker
-      uses: docker-practice/actions-setup-docker@v1
+      uses: docker-practice/actions-setup-docker@master
       
     - name: Build Docker Image
       run: docker build -t ugs-portal:latest -t ugs-portal:${{ env.PACKAGE_VERSION }} .
