@@ -1,14 +1,11 @@
 import Card from "@/components/card";
-import { group } from "console";
 
 async function getSchedule() {
   const res = await fetch(`http://localhost:7777/schedule`, {cache: 'no-store'})
   return res.json()
 }
 
-
-export default async function Home() {
-
+export default async function Home()  {
   const schedule = await getSchedule()
 
   return (
@@ -26,7 +23,7 @@ export default async function Home() {
                 <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 float-right">{group.startAt}</span>
               </span>
               { JSON.parse(group.pairs).map((pair) => (
-                <>
+                <div key={pair}>
                   <div className="grid grid-rows-1 grid-flow-col items-center gap-4 mt-auto">
                     <p className="text-sm font-bold">{pair.number}</p>
                     <p className="text-sm">{pair.label}</p>
@@ -35,7 +32,7 @@ export default async function Home() {
                       <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">{pair.teacher}</span>
                       <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">{pair.aud}</span>
                   </a>
-                </>
+                </div>
               ))}
             </div>
           </article>
@@ -116,8 +113,6 @@ export default async function Home() {
           </div>
         </article>
       </section> */}
-
-
     </>
   );
 }

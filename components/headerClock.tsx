@@ -16,7 +16,7 @@ export default function HeaderClock() {
 
   return (
     <>
-    <span className="w-20 font-bold text-[32px] cursor-pointer" id="time">{date.getHours()}<span className="blink_me">:</span>{date.getMinutes().toString().padStart(2, '0')}</span>
+    <span className="w-20 font-bold text-[32px] cursor-pointer" id="time">{date.getHours().toString().padStart(2, '0')}<span className="blink_me">:</span>{date.getMinutes().toString().padStart(2, '0')}</span>
     </>
   )
 }
