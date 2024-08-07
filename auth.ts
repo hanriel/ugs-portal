@@ -11,7 +11,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         password: {},
       },
       async authorize(credentials) {
-        const res = await fetch("http://pmk-api.hanriel.ru" + "/auth/singin", {
+        const res = await fetch("https://pmk-api.hanriel.ru" + "/auth/singin", {
           method: "POST",
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" },
