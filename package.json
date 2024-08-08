@@ -1,9 +1,9 @@
 {
   "name": "ugs-portal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
-    "dev": "set NODE_TLS_REJECT_UNAUTHORIZED=0 && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

@@ -2,7 +2,7 @@ import Card from "@/components/card";
 import { Key } from "react";
 
 async function getSchedule() {
-  const res = await fetch(`http://localhost:7777/schedule`, {cache: 'no-store'})
+  const res = await fetch(`https://pmk-api.hanriel.ru/schedule`, {cache: 'no-store'})
   return res.json()
 }
 
