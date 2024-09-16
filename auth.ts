@@ -16,7 +16,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" },
         });
-
+        
         const user = await res.json()
         if (res.ok && user) {
           return user
