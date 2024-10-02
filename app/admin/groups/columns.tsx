@@ -71,7 +71,7 @@ export const columns: ColumnDef<Group>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Действия</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(payment.curator)}
             >
               Copy payment ID
             </DropdownMenuItem>
