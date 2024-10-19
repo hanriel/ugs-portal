@@ -9,10 +9,10 @@ export default function Navigation() {
                         <NavItem label="Группы" link="/admin/groups" icon="icons-1"/>
                     </li>
                     <li className="relative">
-                        <NavItem label="Студенты" link="/admin/groups" icon="icons-1"/>
+                        <NavItem label="Студенты" link="/admin/students" icon="icons-1"/>
                     </li>
                     <li className="relative">
-                        <NavItem label="Преподаватели" link="/admin/groups" icon="icons-1"/>
+                        <NavItem label="Преподаватели" link="/admin/teachers" icon="icons-1"/>
                     </li>
                     <li className="relative">
                         <NavItem label="Посещаемость" link="/admin/presence" icon="icons-1"/>

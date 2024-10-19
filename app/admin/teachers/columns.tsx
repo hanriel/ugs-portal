@@ -6,17 +6,14 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons"
 import { ColumnDef } from "@tanstack/react-table"
 
-export type Group = {
+export type Teacher = {
   id: number
-  label: string
-  curator: {
-    id: number
-    first_name: string
-    last_name: string
-  }
+  first_name: string
+  last_name: string
+  email: string
 }
  
-export const columns: ColumnDef<Group>[] = [
+export const columns: ColumnDef<Teacher>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -40,30 +37,44 @@ export const columns: ColumnDef<Group>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "label",
+    accessorKey: "first_name",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Группа
+          Фамилия
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       )
     },
-    cell: ({ row }) => <div>{row.getValue("label")}</div>,
+    cell: ({ row }) => <div>{row.getValue("first_name")}</div>,
   },
   {
-    accessorKey: "curator.first_name",
-    header: "Куратор",
-    cell: ({ row }) => <div>{row.original.curator?.first_name + ' ' + row.original.curator?.last_name}</div>
+    accessorKey: "last_name",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Имя
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => <div>{row.getValue("last_name")}</div>,
+  },
+  {
+    id: "Email",
+    accessorKey: "login"
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const group = row.original
+      const teacher = row.original
  
       return (
         <DropdownMenu>
@@ -76,12 +87,12 @@ export const columns: ColumnDef<Group>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Действия</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(group.curator.first_name)}
+              onClick={() => navigator.clipboard.writeText(teacher.email)}
             >
-              Copy payment ID
+              Скопировать email
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DropdownMenuItem>Просмотреть</DropdownMenuItem>
             <DropdownMenuItem>Удалить</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
