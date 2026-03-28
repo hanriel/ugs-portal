@@ -1,8 +1,6 @@
 import HeaderClock from './headerClock'
 import HeaderDate from './headerDate'
-import Image from 'next/image'
-import { auth, signOut } from '@/auth';
-import { Button } from './ui/button';
+import { auth } from '@/auth';
 import { ModeToggle } from './modeToggle';
 import UserNav from './user-nav';
 

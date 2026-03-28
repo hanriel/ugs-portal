@@ -1,9 +1,12 @@
-import { Group } from "../admin/groups/columns"
-import { Student } from "../admin/students/columns"
-import { Teacher } from "../admin/teachers/columns"
+import { useSession } from "next-auth/react";
+import { Group } from "../(admin)/admin/groups/columns"
+import { Student } from "../(admin)/admin/students/columns"
+import { Teacher } from "../(admin)/admin/teachers/columns"
 
 export async function fetchGroups(): Promise<Group[]> {
-    const res = await fetch(process.env.API_HOST + `/groups`, {cache: 'no-store'})
+    const res = await fetch(`${process.env.API_HOST}/groups`, {
+        cache: 'no-store',
+    })
     return res.json()
 }
 

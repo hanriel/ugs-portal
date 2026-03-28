@@ -5,7 +5,7 @@ import Aside from "@/components/aside";
 import Header from "@/components/header"
 
 const montserrat = localFont({
-  src: '../../public/montserrat.ttf',
+  src: '../montserrat.ttf',
   display: 'swap'
 })
 

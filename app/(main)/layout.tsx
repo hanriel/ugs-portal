@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
-import "./globals.css";
+import "../globals.css";
 import Providers from "@/components/providers";
+import Aside from "@/components/aside";
+import Header from "@/components/header";
 
 const montserrat = localFont({
-  src: '../public/montserrat.ttf',
+  src: '../montserrat.ttf',
   display: 'swap'
 })
 
@@ -22,7 +24,13 @@ export default function RootLayout({
     <html lang="ru">
         <body className={montserrat.className}>
             <Providers>
-                {children}
+                  <div className={`max-w-[1440px] min-h-full relative mx-auto`}>
+                    <Aside />
+                    <main className="border-box min-h-screen py-8 pb-[200px] overflow-hidden relative">
+                    <Header />
+                    {children}
+                    </main>
+                  </div>
             </Providers>
         </body>
     </html>

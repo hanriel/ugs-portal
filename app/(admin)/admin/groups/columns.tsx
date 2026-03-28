@@ -53,7 +53,7 @@ export const columns: ColumnDef<Group>[] = [
       )
     },
     cell: ({ row }) => <div>{row.getValue("label")}</div>,
-  },
+  }, 
   {
     accessorKey: "curator.first_name",
     header: "Куратор",
