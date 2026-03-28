@@ -4,32 +4,35 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
   
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Get version from package.json
-      run: echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-    # TODO: Add setup eviroment varibles
-      
-    - name: Set up Docker
-      uses: docker-practice/actions-setup-docker@master
-      
-    - name: Build Docker Image
-      run: docker build -t ugs-portal:latest -t ugs-portal:${{ env.PACKAGE_VERSION }} .
-   
-    - name: Setup key
-      run: |
-        set -eu
-        mkdir "$HOME/.ssh"
-        echo "${{ secrets.STAGE_ID_RSA }}" > "$HOME/.ssh/key"
-        chmod 600 "$HOME/.ssh/key"
-                  
-    - name: Deploy Docker Container
-      run: |
-        docker save ugs-portal | ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no ${{ secrets.STAGE_SERVER_USER }}@${{ secrets.STAGE_SERVER_IP }} -p ${{ secrets.STAGE_SERVER_PORT }} 'docker load'
+    - name: Log in to the Container registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract metadata (tags, labels)
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ghcr.io/${{ github.repository }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ id.meta.outputs.tags }}
+        labels: ${{ id.meta.outputs.labels }}
