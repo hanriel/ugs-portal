@@ -23,7 +23,7 @@ export default async function UserNav () {
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
           <Avatar>
             <AvatarImage
-              src={session?.user?.image || "/avatars/01.png"}
+              src={`https://pmkspo.ru/img/staff/${session?.user?.login}.png` || "avatars/01.png"}
               alt={session?.user?.name || "USER"}
             />
             <AvatarFallback>SC</AvatarFallback>

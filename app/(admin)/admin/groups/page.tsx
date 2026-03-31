@@ -52,7 +52,7 @@ export default function Groups() {
   
   return (
     <>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 mt-4">
         <h2 className="text-lg font-bold">Группы</h2>
         <div className="flex gap-2">
           <Button

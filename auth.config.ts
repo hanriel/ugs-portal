@@ -17,7 +17,7 @@ export const authConfig = {
       }
       return true;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       return { ...token, ...user }
     },
     async session({ session, token, user }) {
