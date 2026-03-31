@@ -10,11 +10,10 @@ export default function Aside() {
             <Brand />
             <Navigation />
 
-            <p className="text-xs pt-3 pr-8 pb-3 pl-4 leading-relaxed">Избранные и закрытые разделы будут доступны после <a href="/singin">Авторизации</a></p>
             <footer className="">
                 <a className="flex absolute bottom-4 mr-12 items-center pt-3 pb-3 pl-4 rounded-xl border border-transparent transition-colors hover:border-blue-100 hover:bg-blue-500/10 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30" href="https://t.me/hanriel">
                   <i className="text-4xl icons-heart mr-3"></i>
-                  <span className="text-sm">Made with love by Fedoseev&nbsp;D.A.</span>
+                  <span className="text-sm">Сделано с любовью Федосеев&nbsp;Д.А.</span>
                 </a>
             </footer>
             </div>            

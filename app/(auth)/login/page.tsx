@@ -10,7 +10,7 @@ import { useActionState } from "react";
 export default function Login() {
   
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/main';
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined,
