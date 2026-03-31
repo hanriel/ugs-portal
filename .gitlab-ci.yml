@@ -1,0 +1,11 @@
+stages:
+  - build-image
+
+build image:
+  stage: build-image
+  image: docker:latest
+  services:
+   - docker:dind
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --cache-from=$CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME --cache-from=$CI_REGISTRY_IMAGE:master --shm-size 512M .
+    - docker save $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA | ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no ${{ secrets.STAGE_SERVER_USER }}@${{ secrets.STAGE_SERVER_IP }} -p ${{ secrets.STAGE_SERVER_PORT }} 'docker load'
