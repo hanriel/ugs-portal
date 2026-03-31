@@ -1,7 +1,7 @@
 import Card from "@/components/card";
 
 async function getSchedule() {
-  const res = await fetch(process.env.API_HOST + '/schedule', {cache: 'no-store'})
+  const res = await fetch('http://api.p87.pmkspo.ru/schedule', {cache: 'no-store'})
   return res.json()
 }
 

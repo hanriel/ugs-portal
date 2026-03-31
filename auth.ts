@@ -12,7 +12,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         password: { label: "Password", type: "password" }
       },
       authorize: async (credentials) => {
-        
         const res = await fetch(process.env.API_HOST + "/auth/login", {
           method: "POST",
           body: JSON.stringify(credentials),
@@ -41,9 +40,25 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       return true;
     },
     async jwt({ token, user }) {
-      return { ...token, ...user }
+      
+      if (user) {
+        // Добавляем нужные поля из объекта пользователя в токен
+        token.id = user.id
+        token.name = user.name
+        token.accessToken = user.accessToken
+      }
+
+      return token
     },
-    async session({ session, token, user }) {
+    async session({ session, token, user }) {      
+      if (session.user) {
+        session.user.id = token.id as string
+        session.user.login = token.login as string
+        session.user.name = token.name as string
+        session.user.email = token.email as string
+        // @ts-ignore
+        session.accessToken = token.accessToken
+      }
       return session
     }
   },
