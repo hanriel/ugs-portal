@@ -12,7 +12,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         password: { label: "Password", type: "password" }
       },
       authorize: async (credentials) => {
-        const res = await fetch(process.env.API_HOST + "/auth/login", {
+        const res = await fetch("http://api.p87.pmkspo.ru/auth/login", {
           method: "POST",
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" },
