@@ -46,9 +46,8 @@ export default function Login() {
             </>
           )}
         </div>
-        <input type="hidden" name="redirectTo" value="{callbackUrl}" />
+        <input type="hidden" name="redirectTo" value={callbackUrl} />
         <Button type="submit" aria-disabled={isPending}>Вход</Button>
-        <Link className="text-center" href="/">Забыли пароль?</Link>
       </div>
     </form>
     </>
