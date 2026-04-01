@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import "./../globals.css";
 import Aside from "@/components/aside";
 import Header from "@/components/header"
+import { Suspense } from "react";
 
 const montserrat = localFont({
   src: '../montserrat.ttf',
@@ -24,7 +25,9 @@ export default function LoginLayout({
       <body className={montserrat.className}>
       <div className={`max-w-[550px] min-h-full px-8 relative mx-auto`}>
         <main className="border-box min-h-screen py-8 pb-[200px] relative">
+          <Suspense>
           {children}
+          </Suspense>
         </main>
       </div>
       </body>
