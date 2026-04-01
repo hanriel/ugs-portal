@@ -9,8 +9,8 @@ import { useActionState } from "react";
 
 export default function Login() {
   
-  // const searchParams = useSearchParams();
-  // const callbackUrl = searchParams.get('callbackUrl') || '/';
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined,
@@ -46,9 +46,8 @@ export default function Login() {
             </>
           )}
         </div>
-        <input type="hidden" name="redirectTo" value="/" />
+        <input type="hidden" name="redirectTo" value={callbackUrl} />
         <Button type="submit" aria-disabled={isPending}>Вход</Button>
-        <Link className="text-center" href="/">Забыли пароль?</Link>
       </div>
     </form>
     </>
