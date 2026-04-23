@@ -7,15 +7,18 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { auth } from "@/auth";
 import LogoutButton from "./logout-button";
+import { auth } from "@/auth";
+import Link from "next/link";
 
 export default async function UserNav () {
   const session = await auth();
+  if (!session?.user) {
+    return null;
+  }
 
   return (
     <DropdownMenu>
@@ -23,10 +26,10 @@ export default async function UserNav () {
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
           <Avatar>
             <AvatarImage
-              src={`https://pmkspo.ru/img/staff/${session?.user?.login}.png` || "avatars/01.png"}
-              alt={session?.user?.name || "USER"}
+              src={`https://pmkspo.ru/img/staff/${session?.user?.id}.png` || "avatars/01.png"}
+              alt={session?.user?.id || "USER"}
             />
-            <AvatarFallback>SC</AvatarFallback>
+            <AvatarFallback>{session?.user?.name.split(' ')[0][0]}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -43,15 +46,19 @@ export default async function UserNav () {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            Профиль
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+          <DropdownMenuItem asChild>
+            <Link href='/profile'>
+              Профиль
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             Настройки
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>Новая команда</DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href='/admin'>
+              Админпанель
+            </Link>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <LogoutButton/>

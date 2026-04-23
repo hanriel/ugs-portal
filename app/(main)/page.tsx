@@ -1,12 +1,12 @@
 import Card from "@/components/card";
 
-async function getSchedule() {
-  const res = await fetch('http://api.p87.pmkspo.ru/schedule', {cache: 'no-store'})
-  return res.json()
-}
+// async function getSchedule() {
+//   const res = await fetch('http://localhost:7777/schedule', {cache: 'no-store'})
+//   return res.json()
+// }
 
 export default async function Home()  {
-  const schedule = await getSchedule()
+  // const schedule = await getSchedule()
 
   return (
     <>
@@ -14,8 +14,8 @@ export default async function Home()  {
         <h2 className="text-lg font-bold">Расписание</h2>
         <a className="text-xs" href="/all">Сформировано {}</a>
       </div>
-      <section className="grid grid-cols-[1fr_1fr_1fr] gap-8">
-        { schedule.map((group : { pairs : string, date: string, startAt : string, group_id : { id: number, label : string } }) => (
+      {/* <section className="grid grid-cols-[1fr_1fr_1fr] gap-8"> */}
+        {/* { schedule.map((group : { pairs : string, date: string, startAt : string, group_id : { id: number, label : string } }) => (
             <article key={group.group_id.id} className="flex rounded-lg h-auto overflow-hidden relative border dark:border-neutral-700 hover:border-blue-100 hover:bg-blue-500/10 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
             <div className="grid gap-1 m-4 relative z-10 ">
               <span className="text-lg font-bold">
@@ -36,8 +36,8 @@ export default async function Home()  {
               ))}
             </div>
           </article>
-        ))}
-      </section>
+        ))} */}
+      {/* </section> */}
 
       <div className="flex justify-between mt-8 mb-4">
         <h2 className="text-lg font-bold">Мероприятия</h2>

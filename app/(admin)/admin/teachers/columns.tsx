@@ -7,10 +7,20 @@ import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons"
 import { ColumnDef } from "@tanstack/react-table"
 
 export type Teacher = {
-  id: number
-  first_name: string
-  last_name: string
-  email: string
+    id: number
+    dn: string
+    username: string
+    first_name: string
+    last_name: string
+    middle_name: string
+    email: string
+    ldapGuid: string
+    isActive: boolean
+    createdAt: string
+    updatedAt: string
+    role: string
+    department: string
+    degree: string
 }
  
 export const columns: ColumnDef<Teacher>[] = [
@@ -67,15 +77,33 @@ export const columns: ColumnDef<Teacher>[] = [
     cell: ({ row }) => <div>{row.getValue("last_name")}</div>,
   },
   {
-    id: "Email",
-    accessorKey: "login"
+    accessorKey: "middle_name",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Отчество
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => <div>{row.getValue("middle_name")}</div>,
+  },
+  {
+    id: "login",
+    accessorKey: "username",
+  },
+  {
+    id: "email",
+    accessorKey: "email",
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
       const teacher = row.original
- 
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
