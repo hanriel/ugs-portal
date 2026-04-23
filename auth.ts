@@ -1,65 +1,65 @@
-import NextAuth from "next-auth"
-import Credentials from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import Credentials from "next-auth/providers/credentials";
+import { authConfig } from "./auth.config";
 
-export const { auth, handlers, signIn, signOut } = NextAuth({
-  pages: {
-    signIn: '/login',
-  },
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  ...authConfig,
   providers: [
     Credentials({
+      name: "credentials",
       credentials: {
-        username: { label: "Username", type: "username" },
-        password: { label: "Password", type: "password" }
+        username: { label: "Логин", type: "text" },
+        password: { label: "Пароль", type: "password" },
       },
-      authorize: async (credentials) => {
-        const res = await fetch("http://api.p87.pmkspo.ru/auth/login", {
-          method: "POST",
-          body: JSON.stringify(credentials),
-          headers: { "Content-Type": "application/json" },
-        });
-        
-        let user = await res.json()
-        if (res.ok && user) {
-          return user
-        } else {
-          return null
+      async authorize(credentials) {
+        if (!credentials?.username || !credentials?.password) return null;
+
+        try {
+          const response = await fetch(`${process.env.API_HOST}/auth/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: credentials.username,
+              password: credentials.password,
+            }),
+          });
+
+          if (!response.ok) return null;
+          const data = await response.json();
+
+          return {
+            id: data.user.id,
+            name: data.user.fullName,
+            email: data.user.email,
+            role: data.user.role,
+            accessToken: data.access_token,
+          };
+        } catch (error) {
+          console.error("Authorize error:", error);
+          return null;
         }
       },
     }),
   ],
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user;
-      const isOnMain = nextUrl.pathname.startsWith('/');
-      if (isOnMain) {
-        if (isLoggedIn) return true;
-        return false;
-      } else if (isLoggedIn) {
-        return Response.redirect(new URL('/', nextUrl));
-      }
-      return true;
-    },
     async jwt({ token, user }) {
-      
       if (user) {
-        // Добавляем нужные поля из объекта пользователя в токен
-        token.id = user.id
-        token.name = user.name
-        token.accessToken = user.accessToken
+        token.id = user.id;
+        token.role = user.role;
+        token.accessToken = user.accessToken;
       }
-
-      return token
+      return token;
     },
-    async session({ session, token, user }) {      
+    async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.id as string
-        session.user.login = token.login as string
-        session.user.name = token.name as string
-        session.user.email = token.email as string
-        // @ts-ignore
-        session.accessToken = token.accessToken
+        session.user.id = token.id as string;
+        session.user.role = token.role as string;
       }
-      return session
-    }
+      session.accessToken = token.accessToken as string;
+      return session;
+    },
   },
-})
+  session: {
+    strategy: "jwt",
+  },
+});

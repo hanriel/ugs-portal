@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-  <html lang="ru">
+  <html lang="ru" suppressHydrationWarning>
     <body className={montserrat.className}>
         <Providers>
           <div className={`min-h-full relative px-6 mx-auto`}>

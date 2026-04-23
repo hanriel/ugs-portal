@@ -6,18 +6,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons"
 import { ColumnDef } from "@tanstack/react-table"
 
-export type Group = {
+export type Speciality = {
   id: number
-  label: string
-  curator: {
-    id: number
-    first_name: string
-    last_name: string
-    middle_name: string
-  }
+  name: string
 }
  
-export const columns: ColumnDef<Group>[] = [
+export const columns: ColumnDef<Speciality>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -41,29 +35,34 @@ export const columns: ColumnDef<Group>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "label",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Группа
+          Название
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       )
     },
-    cell: ({ row }) => <div>{row.getValue("label")}</div>,
-  }, 
+    cell: ({ row }) => <div>{row.getValue("name")}</div>,
+  },
   {
-    accessorKey: "curator",
-    header: "Куратор",
-    cell: ({ row }) => <div>{row.original.curator?.first_name ? row.original.curator?.first_name + ' ' + row.original.curator?.last_name + ' ' + row.original.curator.middle_name : "Не указан"}</div>
+    accessorKey: "branch",
+    header: "Отделение",
+    cell: ({ row }) => <div>{"09.00.00 Информатика и вычислительная техника"}</div>
+  },
+  {
+    accessorKey: "groups",
+    header: "Групп",
+    cell: ({ row }) => <div>{0}</div>
   },
   {
     accessorKey: "students",
-    header: "Количество человек",
-    cell: ({ row }) => <div>{10}</div>
+    header: "Студентов",
+    cell: ({ row }) => <div>{0}</div>
   },
   {
     id: "actions",
@@ -81,7 +80,13 @@ export const columns: ColumnDef<Group>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Действия</DropdownMenuLabel>
-            <DropdownMenuItem>Редактировать</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(group.supervisor.first_name)}
+            >
+              Copy payment ID
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>View customer</DropdownMenuItem>
             <DropdownMenuItem>Удалить</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

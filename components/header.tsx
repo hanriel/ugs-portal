@@ -1,13 +1,10 @@
+import { getSession, useSession } from 'next-auth/react';
 import HeaderClock from './headerClock'
 import HeaderDate from './headerDate'
-import { auth } from '@/auth';
 import { ModeToggle } from './modeToggle';
 import UserNav from './user-nav';
 
 export default async function Header() {
-  const session = await auth()
-  if (!session?.user) return null
-
   return (
     <>
       <header className="flex gap-x-8 justify-between items-center">

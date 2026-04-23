@@ -2,19 +2,40 @@
 
 import Brand from "@/components/brand";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { authenticate } from '@/app/lib/actions';
-import { useSearchParams } from 'next/navigation';
-import { useActionState } from "react";
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 export default function Login() {
-  
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/';
-  const [errorMessage, formAction, isPending] = useActionState(
-    authenticate,
-    undefined,
-  );
+  const router = useRouter();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      const result = await signIn('credentials', {
+        username,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError('Неверный логин или пароль');
+      } else {
+        router.push('/');
+      }
+    } catch (err) {
+      setError('Произошла ошибка. Попробуйте позже.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
   return (
@@ -23,16 +44,16 @@ export default function Login() {
         <Brand/>
         <h2 className="text-lg font-bold self-center mr-6">Система авторизации</h2>
       </div>
-      <form action={formAction} className="grid grid-cols-[1fr_1fr_1fry] gap-8">
+      <form onSubmit={handleSubmit} className="grid grid-cols-[1fr_1fr_1fry] gap-8">
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8">
         <div className="">
           <label htmlFor="username" className="block text-sm font-medium leading-6">Логин</label>
-          <input id="username" name="username" type="username" autoComplete="username" className="block w-full rounded-md bg-blue-500/10 border-blue-100 px-6 py-4 text-sm mt-2" required></input>
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} id="username" name="username" autoComplete="username" className="block w-full rounded-md bg-blue-500/10 border-blue-100 px-6 py-4 text-sm mt-2" required></input>
         </div>
 
         <div className="">
           <label htmlFor="password" className="block text-sm font-medium leading-6">Пароль</label>
-          <input type="password" name="password" id="password" autoComplete="password" className="block w-full rounded-md bg-blue-500/10 border-blue-100 px-6 py-4 text-sm mt-2" required></input>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} name="password" id="password" autoComplete="password" className="block w-full rounded-md bg-blue-500/10 border-blue-100 px-6 py-4 text-sm mt-2" required></input>
         </div>
 
         <div
@@ -40,14 +61,15 @@ export default function Login() {
           aria-live="polite"
           aria-atomic="true"
         >
-        {errorMessage && (
+        {error && (
             <>
-              <p className="text-sm text-red-500">{errorMessage}</p>
+              <p className="text-sm text-red-500">{error}</p>
             </>
           )}
         </div>
-        <input type="hidden" name="redirectTo" value={callbackUrl} />
-        <Button type="submit" aria-disabled={isPending}>Вход</Button>
+        <Button type="submit" aria-disabled={loading}>
+        {loading ? 'Вход...' : 'Войти'}
+        </Button>
       </div>
     </form>
     </>

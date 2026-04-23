@@ -1,28 +1,26 @@
-import type { NextAuthConfig } from 'next-auth';
-import NextAuth, { type DefaultSession } from "next-auth"
- 
+import type { NextAuthConfig } from "next-auth";
+
 export const authConfig = {
   pages: {
-    signIn: '/login',
+    signIn: "/login",
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnDashboard = nextUrl.pathname.startsWith('/');
-      if (isOnDashboard) {
+      const isOnDashboard = nextUrl.pathname.startsWith("/");
+      const isOnAdmin = nextUrl.pathname.startsWith("/admin");
+
+      if (isOnDashboard || isOnAdmin) {
         if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
+        return false;
       } else if (isLoggedIn) {
-        return Response.redirect(new URL('/', nextUrl));
+        if (nextUrl.pathname === "/login") {
+          return Response.redirect(new URL("/", nextUrl));
+        }
+        return true;
       }
       return true;
     },
-    async jwt({ token, user, account }) {
-      return { ...token, ...user }
-    },
-    async session({ session, token, user }) {
-      return session
-    }
   },
-  providers: [], // Add providers with an empty array for now
+  providers: [],
 } satisfies NextAuthConfig;

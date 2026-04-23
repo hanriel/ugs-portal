@@ -6,6 +6,12 @@ export default function Navigation() {
             <nav className="my-6">
                 <ul className="nav__list">
                     <li className="relative">
+                        <NavItem label="Отделения" link="/admin/branches" icon="icons-1"/>
+                    </li>
+                    <li className="relative">
+                        <NavItem label="Специальности" link="/admin/specialties" icon="icons-1"/>
+                    </li>
+                    <li className="relative">
                         <NavItem label="Группы" link="/admin/groups" icon="icons-1"/>
                     </li>
                     <li className="relative">
