@@ -80,9 +80,7 @@ export const columns: ColumnDef<Speciality>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Действия</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(group.supervisor.first_name)}
-            >
+            <DropdownMenuItem>
               Copy payment ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
