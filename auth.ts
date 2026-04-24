@@ -15,11 +15,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!credentials?.username || !credentials?.password) return null;
 
         try {
-          console.log("Try to credentiald login...")
-          console.log(`Fetching ${process.env.API_HOST}/auth/login...`)
-
-
-          const response = await fetch(`${process.env.API_HOST}/auth/login`, {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -30,9 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           if (!response.ok) return null;
           const data = await response.json();
-
-          console.log(await data)
-
+          
           return {
             id: data.user.id,
             name: data.user.fullName,

@@ -1,3 +1,5 @@
+"use client"
+
 import { fetchTeachers } from '@/app/lib/data'
 import { DataTable } from './data-table'
 import { Teacher, columns } from "./columns"

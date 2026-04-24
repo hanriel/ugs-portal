@@ -9,12 +9,14 @@ import { ColumnDef } from "@tanstack/react-table"
 export type Group = {
   id: number
   label: string
+  labelRU: string
   curator: {
     id: number
     first_name: string
     last_name: string
     middle_name: string
   }
+  studentCount: number
 }
  
 export const columns: ColumnDef<Group>[] = [
@@ -41,7 +43,7 @@ export const columns: ColumnDef<Group>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "label",
+    accessorKey: "labelRU",
     header: ({ column }) => {
       return (
         <Button
@@ -53,7 +55,7 @@ export const columns: ColumnDef<Group>[] = [
         </Button>
       )
     },
-    cell: ({ row }) => <div>{row.getValue("label")}</div>,
+    cell: ({ row }) => <div>{row.getValue("labelRU")}</div>,
   }, 
   {
     accessorKey: "curator",
@@ -63,7 +65,7 @@ export const columns: ColumnDef<Group>[] = [
   {
     accessorKey: "students",
     header: "Количество человек",
-    cell: ({ row }) => <div>{10}</div>
+    cell: ({ row }) => <div>{row.original.studentCount}</div>
   },
   {
     id: "actions",
