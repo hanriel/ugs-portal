@@ -59,13 +59,10 @@ export function StudentsTable<TData, TValue>({
     [router]
   );
 
-  // Пагинация
   const goToPage = (page: number) => updateParams({ page: String(page) });
 
-  // Поиск
   const handleSearch = (term: string) => updateParams({ search: term, page: '1' });
 
-  // Сортировка (можно вызывать из DataTable при клике на заголовок)
   const handleSort = (columnId: string) => {
     const newOrder = columnId === currentSortBy && currentSortOrder === 'asc' ? 'desc' : 'asc';
     updateParams({ sortBy: columnId, sortOrder: newOrder, page: '1' });
@@ -81,7 +78,7 @@ export function StudentsTable<TData, TValue>({
           className="max-w-sm"
         />
       </div>
-      <DataTable columns={columns} data={data} onSort={handleSort} />
+      <DataTable columns={columns} data={data} />
       <div className="flex justify-center gap-2 mt-4">
         <Button
           variant="outline"
