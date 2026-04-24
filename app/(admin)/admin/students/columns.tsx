@@ -1,5 +1,6 @@
 "use client"
  
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -8,9 +9,14 @@ import { ColumnDef } from "@tanstack/react-table"
 
 export type Student = {
   id: number
-  first_name: string
   last_name: string
+  first_name: string
+  middle_name: string
   email: string
+  group: {
+    label: string
+    labelRU: string
+  }
 }
  
 export const columns: ColumnDef<Student>[] = [
@@ -37,38 +43,37 @@ export const columns: ColumnDef<Student>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "first_name",
+    id: 'fullName',
+    accessorKey: 'last_name',
     header: ({ column }) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Фамилия
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>ФИО<CaretSortIcon className="ml-2 h-4 w-4" /></Button>
       )
     },
-    cell: ({ row }) => <div>{row.getValue("first_name")}</div>,
+    cell: ({ row }) => {
+      const student = row.original;
+
+      return(
+        <>
+        {`${student.last_name} ${student.first_name} ${student.middle_name ?? ''}`}
+        </>
+      )
+    }
   },
   {
-    accessorKey: "last_name",
-    header: ({ column }) => {
+    accessorKey: "group.labelRU",
+    header: "Группа",
+    cell: ({ row }) => {
+      const student = row.original;
+
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Имя
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
+        <>{student.group?.labelRU}</>
       )
-    },
-    cell: ({ row }) => <div>{row.getValue("last_name")}</div>,
+    }
   },
   {
-    id: "Email",
-    accessorKey: "login"
+    accessorKey: "login",
+    cell: ({ row }) => <div>{row.getValue("login")}</div>,
   },
   {
     id: "actions",
@@ -89,11 +94,11 @@ export const columns: ColumnDef<Student>[] = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(teacher.email)}
             >
-              Скопировать email
+              Скопировать ФИО
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Просмотреть</DropdownMenuItem>
-            <DropdownMenuItem>Удалить</DropdownMenuItem>
+            <DropdownMenuItem>Редактировать</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
