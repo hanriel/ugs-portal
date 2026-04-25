@@ -1,9 +1,6 @@
-'use client'
-
-import { fetchSpecialies } from '@/app/lib/data'
+import { fetchSpecialties } from '@/app/lib/data'
 import { DataTable } from './data-table'
 import { Speciality, columns } from "./columns"
-import { useState, useEffect } from 'react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,16 +11,10 @@ import {
 import { Button } from "@/components/ui/button"
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 
-export default function Specialies() {
-  const [specialies, setGroups] = useState<Speciality[]>([])
-
-  useEffect(() => {
-    const loadSpecialies= async () => {
-      const fetchedSpecialies = await fetchSpecialies()
-      setGroups(fetchedSpecialies || [])
-    }
-    loadSpecialies()
-  }, [])
+export default async function SpecialiesPage() {
+  
+  const result = await fetchSpecialties();
+  
 
   const handleAction = (action: string) => {
     switch (action) {
@@ -46,7 +37,7 @@ export default function Specialies() {
     }
   }
 
-  if (!specialies || specialies.length === 0) {
+  if (!result || result.length === 0) {
     return (
       <p className="mt-4 text-gray-400">Загрузка отдлеений...</p>
     );
@@ -79,7 +70,7 @@ export default function Specialies() {
         </div>
       </div>
       <div className='relative overflow-x-auto sm:rounded-lg mt-4'>
-        <DataTable columns={columns} data={specialies} />
+        <DataTable columns={columns} data={result} />
       </div>
     </>
   );
